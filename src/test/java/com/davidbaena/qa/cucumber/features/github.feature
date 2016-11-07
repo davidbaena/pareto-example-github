@@ -2,6 +2,9 @@ Feature:
 
   Scenario:
     Given GitHub webpage
-    When go to sign in
-    When login with correct user
+    And go to sign in
+    And login with correct user
+    When create a new repository
+    Then exists repository
+
 

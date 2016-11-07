@@ -5,8 +5,8 @@ import com.bq.qa.pareto.web.driver.ChromeDriver;
 import com.davidbaena.qa.config.GithubConfigWeb;
 import com.davidbaena.qa.pages.web.HomePage;
 import com.davidbaena.qa.pages.web.SignInPage;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
-import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 
 public class LoginSteps{
@@ -30,15 +30,17 @@ public class LoginSteps{
     }
 
 
-    @When("^login with correct user$")
+    @And("^login with correct user$")
     public void loginWithCorrectUser() {
         String username = paretoWeb.getConfig().github_username();
         String password = paretoWeb.getConfig().github_password();
         signInPage.login(username,password);
     }
 
-    @When("^go to sign in")
+    @And("^go to sign in")
     public void goToSignUp(){
         homePage.gotToSignIn();
     }
+
+
 }
