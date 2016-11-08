@@ -1,45 +1,36 @@
 package com.davidbaena.qa.cucumber.steps;
 
-import com.bq.qa.pareto.web.ParetoWeb;
-import com.bq.qa.pareto.web.driver.ChromeDriver;
-import com.davidbaena.qa.config.GithubConfigWeb;
-import com.davidbaena.qa.pages.web.HomePage;
-import com.davidbaena.qa.pages.web.SignInPage;
+import com.bq.qa.pareto.apps.ParetoApp;
+import com.bq.qa.pareto.apps.driver.AndroidDriver;
+import com.davidbaena.qa.config.GithubConfigApp;
+import com.davidbaena.qa.pages.app.SignInPage;
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import org.openqa.selenium.WebDriver;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.support.PageFactory;
+
+import java.util.concurrent.TimeUnit;
 
 public class LoginSteps{
 
-    private final ParetoWeb<ChromeDriver,GithubConfigWeb> paretoWeb;
-    private final HomePage homePage;
-    public WebDriver webDriver;
+    private final ParetoApp<AndroidDriver,GithubConfigApp> paretoApp;
+    private AndroidDriver androidDriver;
     private SignInPage signInPage;
 
     public LoginSteps(){
-        paretoWeb = ParetoWeb.<ChromeDriver,GithubConfigWeb>getInstance(GithubConfigWeb.class);
-        signInPage = new SignInPage(paretoWeb);
-        homePage = new HomePage(paretoWeb);
-        this.webDriver=paretoWeb.getDriver();
-    }
+        paretoApp = ParetoApp.<AndroidDriver,GithubConfigApp>getInstance(GithubConfigApp.class);
+        androidDriver= paretoApp.getDriver();
+        PageFactory.initElements(new AppiumFieldDecorator(androidDriver,paretoApp.getConfig().driver_timeout(), TimeUnit.SECONDS),this);
 
-    @Given("^GitHub webpage$")
-    public void go_to_github(){
-        String url = paretoWeb.getConfig().driver_endpoint();
-        webDriver.get(url);
+
+        signInPage = new SignInPage(paretoApp);
     }
 
 
     @And("^login with correct user$")
     public void loginWithCorrectUser() {
-        String username = paretoWeb.getConfig().github_username();
-        String password = paretoWeb.getConfig().github_password();
+        String username = paretoApp.getConfig().github_username();
+        String password = paretoApp.getConfig().github_password();
         signInPage.login(username,password);
-    }
-
-    @And("^go to sign in")
-    public void goToSignUp(){
-        homePage.gotToSignIn();
     }
 
 

@@ -1,13 +1,13 @@
 package com.davidbaena.qa.config;
 
-import com.bq.qa.pareto.web.config.ParetoWebConfig;
+import com.bq.qa.pareto.apps.config.AndroidAppConfig;
 import org.aeonbits.owner.Config;
 
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({"classpath:default.properties",
         "classpath:ProjectConfig.properties"})
-public interface GithubConfigWeb extends ParetoWebConfig{
+public interface GithubConfigApp extends AndroidAppConfig {
 
     @Config.Key("github.username")
     String github_username();

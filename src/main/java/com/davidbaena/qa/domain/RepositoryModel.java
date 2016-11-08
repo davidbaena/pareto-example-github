@@ -23,6 +23,13 @@ public class RepositoryModel {
         this.initialized =true;
     }
 
+    public RepositoryModel(String name){
+        this.name=name;
+        this.description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. ";
+        this.isPublic=true;
+        this.initialized =true;
+    }
+
     public void makePrivate(){
         isPublic=false;
     }
