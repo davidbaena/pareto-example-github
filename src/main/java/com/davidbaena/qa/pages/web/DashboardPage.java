@@ -1,6 +1,7 @@
 package com.davidbaena.qa.pages.web;
 
 import com.bq.qa.pareto.web.ParetoWeb;
+import com.bq.qa.pareto.web.driver.ChromeDriver;
 import com.bq.qa.pareto.web.util.Page;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Copyright 2016 (C) BQ
  */
-public class DashboardPage extends Page {
+public class DashboardPage extends Page<ChromeDriver> {
 
     @FindBy(xpath = "//*[@id=\"user-links\"]/li[2]")
     WebElement newButton;
@@ -23,7 +24,7 @@ public class DashboardPage extends Page {
     WebElement newRepositoryButton;
 
     public DashboardPage(ParetoWeb paretoWeb) {
-        super(paretoWeb.getDriver());
+        super((ChromeDriver) paretoWeb.getDriver());
         decorate(this);
     }
 

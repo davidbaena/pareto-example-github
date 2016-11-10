@@ -1,12 +1,13 @@
 package com.davidbaena.qa.pages.web;
 
 import com.bq.qa.pareto.web.ParetoWeb;
+import com.bq.qa.pareto.web.driver.ChromeDriver;
 import com.bq.qa.pareto.web.util.Page;
 import com.davidbaena.qa.domain.RepositoryModel;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class NewRepositoryPage extends Page {
+public class NewRepositoryPage extends Page<ChromeDriver> {
 
     @FindBy(id = "repository_name")
     WebElement repositoryNameEditText;
@@ -30,7 +31,7 @@ public class NewRepositoryPage extends Page {
     WebElement initRespositoryCheck;
 
     public NewRepositoryPage(ParetoWeb paretoWeb) {
-        super(paretoWeb.getDriver());
+        super((ChromeDriver) paretoWeb.getDriver());
         decorate(this);
     }
 

@@ -1,11 +1,12 @@
 package com.davidbaena.qa.pages.web;
 
 import com.bq.qa.pareto.web.ParetoWeb;
+import com.bq.qa.pareto.web.driver.ChromeDriver;
 import com.bq.qa.pareto.web.util.Page;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SignInPage extends Page {
+public class SignInPage extends Page<ChromeDriver> {
 
 ///LOCATORS
     @FindBy(id="login_field")
@@ -18,7 +19,7 @@ public class SignInPage extends Page {
     public WebElement submitButton;
 
     public SignInPage(ParetoWeb paretoWeb) {
-        super(paretoWeb.getDriver());
+        super((ChromeDriver) paretoWeb.getDriver());
         this.webDriver=paretoWeb.getDriver();
         decorate(this); ///<---- DECORATE
     }

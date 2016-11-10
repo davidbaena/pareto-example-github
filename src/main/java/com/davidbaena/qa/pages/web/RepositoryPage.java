@@ -1,6 +1,7 @@
 package com.davidbaena.qa.pages.web;
 
 import com.bq.qa.pareto.web.ParetoWeb;
+import com.bq.qa.pareto.web.driver.ChromeDriver;
 import com.bq.qa.pareto.web.util.Page;
 import com.davidbaena.qa.domain.RepositoryModel;
 
@@ -11,7 +12,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 
-public class RepositoryPage extends Page{
+public class RepositoryPage extends Page<ChromeDriver>{
 
     @FindBy(className = "commits")
     WebElement commitsButton;
@@ -25,7 +26,7 @@ public class RepositoryPage extends Page{
     }
 
     public RepositoryPage(ParetoWeb paretoWeb) {
-        super(paretoWeb.getDriver());
+        super((ChromeDriver) paretoWeb.getDriver());
         decorate(this);
     }
 

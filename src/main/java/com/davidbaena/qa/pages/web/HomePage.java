@@ -1,11 +1,12 @@
 package com.davidbaena.qa.pages.web;
 
 import com.bq.qa.pareto.web.ParetoWeb;
+import com.bq.qa.pareto.web.driver.ChromeDriver;
 import com.bq.qa.pareto.web.util.Page;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class HomePage extends Page{
+public class HomePage extends Page<ChromeDriver>{
 
     @FindBy(name="q")
     WebElement searchEditText;
@@ -17,7 +18,7 @@ public class HomePage extends Page{
     WebElement signInButton;
 
     public HomePage(ParetoWeb paretoWeb) {
-        super(paretoWeb.getDriver());
+        super((ChromeDriver) paretoWeb.getDriver());
         decorate(this);
     }
 
